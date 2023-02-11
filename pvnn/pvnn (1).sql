@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 25-Jan-2023 às 03:28
+-- Generation Time: 11-Fev-2023 às 23:05
 -- Versão do servidor: 10.1.40-MariaDB
 -- versão do PHP: 7.3.5
 
@@ -30,8 +30,40 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `categorias` (
   `idCategory` int(4) NOT NULL,
-  `tipo` varchar(30) NOT NULL
+  `tag` varchar(45) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `categorias`
+--
+
+INSERT INTO `categorias` (`idCategory`, `tag`) VALUES
+(1, 'Comunidade'),
+(2, 'Resenha'),
+(3, 'Sugestões'),
+(4, 'Comentário'),
+(5, 'Teoria'),
+(6, 'Opinião'),
+(7, 'Personagens'),
+(8, 'Conhecendo'),
+(9, 'Lugares'),
+(10, 'Boas vindas'),
+(11, 'Dúvida'),
+(12, 'Esclarecimento'),
+(13, 'o que acontece'),
+(14, 'Melany'),
+(15, 'Andrew'),
+(16, 'Raj'),
+(17, 'Aadi'),
+(18, 'Capitão'),
+(19, 'Mãe do Andrew'),
+(20, 'Jake'),
+(21, 'Pais da Melany'),
+(22, 'Magia'),
+(23, 'Sol e Lua'),
+(24, 'Escrita'),
+(25, 'Livro'),
+(26, 'Blog');
 
 -- --------------------------------------------------------
 
@@ -43,18 +75,27 @@ CREATE TABLE `postagens` (
   `idPosts` int(4) NOT NULL,
   `titulo` text NOT NULL,
   `autor` varchar(50) DEFAULT NULL,
-  `texto` varchar(500) DEFAULT NULL,
+  `resumo` tinytext NOT NULL,
+  `texto` longtext,
   `data` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `tipoPostagem` varchar(20) NOT NULL
+  `idCategoria` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `postagens`
 --
 
-INSERT INTO `postagens` (`idPosts`, `titulo`, `autor`, `texto`, `data`, `tipoPostagem`) VALUES
-(1, 'teste1', 'Anna', 'ocjhbawladwivufwbehf', '2023-01-20 17:14:21', 'teste'),
-(2, 'teste2', 'jefferson', 'pqdnoqeswcekcmqeww', '2023-01-20 17:15:34', 'teste');
+INSERT INTO `postagens` (`idPosts`, `titulo`, `autor`, `resumo`, `texto`, `data`, `idCategoria`) VALUES
+(1, 'Boas vindas!', 'Anna', 'Sejam bem vindos ao blog PVNN!\r\nTodos da equipe e da comunidade agradecem que esteja juntando a nós.', ' Este blog foi feito como intuito de publicar o livro \"Primeira vez num navio\" de forma digital e acessiva a todos, além de criar uma comunidade onde os leitores podem participar do desenrolar da história e trazer suas ideias e opiniões sobre o livro à tona. Esperamos que aproveitem bem essa interação com a autora e os outros participantes da comunidade. ', '2023-01-20 17:14:21', 10),
+(2, 'Conheça os personagens do livro.', 'Jefferson', 'No livro os personagens são muito importantes para entender a história e como ela irá se desenrolar.', 'O PVNN foi um livro escrito majoritariamente durante a pandemia, sendo assim a autora teve tempo de sobra para pensar em como seus personagens seriam, tanto em personalidade quanto aparência.\r\nNeste post você vai conhecer cada um deles mais detalhadamente.\r\n\r\nMelany Geisell \r\n\r\nDescrição: \r\n- Idade: 17 anos (Porém faz aniversário no meio da viagem)\r\n- Altura: 1,70 m\r\n- Peso: 62 kg\r\n- Profissão: Modelo da marca Geisell\r\n- Academicamente: Curso superior em Design de moda\r\n\r\nPersonalidade:\r\n- Introvertida, com boas habilidades sociais, desconfiada, curiosa, destemida, persistente, meiga, gentil, animada, detalhista e observadora.\r\n\r\n\r\nMelany é descrita como uma garota que prefere estar no meio dos livros e estar em contato com a natureza ao estar no meio das pessoas, por mais que sua presença atraia olhares. Uma grande entusiasta da arte, vive observando tudo e guarda suas ideias em um diário, o mesmo que sua avó lhe deu de presente. Cansada de viver como o centro das atenções, ela prefere ser reclusa e não fazer amizades, já que essas duram pouco tempo. \r\n\r\nAndrew Payne\r\n\r\nDescrição:\r\n- Idade: 18 anos\r\n- Altura: 1,80 m\r\n- Peso: 75 kg\r\n- Profissão: Sucessor do capitão\r\n- Academicamente: Autodidata\r\n\r\nPersonalidade:\r\n- Introvertido, bom orador, discreto, misterioso, frio, petulante, gentil, cuidadoso, protetor, desconfiado, observador e determinado.\r\n\r\n\r\nAndrew é descrito como um garoto que conhece o navio como a palma de sua, e por essa habilidade consegue \"desaparecer\" quando quer, e encontrar qualquer coisa ou qualquer um muito mais rápido. Apesar de ser o filho d capitão a maioria das pessoas não o reconhecem e esse é o motivo perfeito para ele não ter amigos, além de sua amiga de infância a quem seus pais juntaram muito cedo achando que no futuro eles poderiam estar juntos como casal, mas Andrew nunca foi fã da ideia.\r\n\r\nNo romance os dois são como dois opostos, e as intrigas e brincadeiras do inicio só reforçam essa ideia, mas com o passar no tempo os dois percebem que são mais parecidos do que imaginavam e acabam se unindo para fazer de sua vida mais livre e não só o que os pais de ambos querem que seja. Com isso eles acabam descobrindo que têm um segredo compartilhado...Mas isso já é spoiller demais! \r\n\r\nLeiam o livro para conhecerem melhor nosso personagens principais, beijos!\r\n', '2023-02-04 14:50:47', 3),
+(3, 'Quem é Melany Geisell?', 'M.G', 'Conheça mais sobre a personagem principal do livro!', ' Melany Geisell é uma jovem de família grande em status, filha dos donos da mais famosa marca de roupas de seu estado, a \"Geisell\'s Atelier\". \r\n Uma aluna aplicada que, logo no início do ano em que se passa o livro, descobriu que havia conseguido ingressar em sua faculdade de moda dos sonhos, para ser futuramente uma grande estilista e modelo da marca de seus pais.\r\n \r\n Melany sendo uma bela jovem e de família endinheirada já foi alvo de pessoas fúteis que se aproximaram dela somente para se aproveitarem de seu status e conseguirem mais atenção, porém toda vez que percebia isso Melany se afastava e deixava todos para trás, assim sofrendo as consequências e se tornando ainda mais o centro das atenções pelos boatos que criavam sobre sua personalidade, dita como \"arrogante\". Sendo assim com o passar do tempo sua imagem na escola era de uma pessoa que quem se deveria manter distância, sendo muitas vezes comparada com sol, \"muitos querem sua luz e seu calor, mas nenhum aguenta chegar muito perto\".\r\n\r\n Ao ganhar uma viagem de cruzeiro como recompensa por ter ingressado à faculdade a jovem pensava que seria hora de descansar e se deixar ser mais sociável, porém não esperava que a pessoa de quem mais queria manter distância fosse a que mais gostaria de sua companhia, exclusivamente. Sendo assim, Andrew seria seu amigo depois de anos acostumada a estar sozinha.\r\n\r\n Uma bela jovem de pele bronzeada, cabelos cacheados e curtos, olhos cor de âmbar, pequenas sardas, alta e magra, uma \"modelo que não modela\" como dizia sua família. Melany é a personificação do Sol em sua história sendo assim como era descrito no livro de sua avó, e por isso era seu dever acabar com o ciclo que se repetia a milênios em sua família e na de Andrew.\r\n\r\n Para entender melhor a história de Melany e todo o resto da trama LEIA O LIVRO! Obrigada por ler meu post!', '2023-02-11 15:13:56', 14),
+(4, 'Quem é Andrew Payne?', 'A.P', 'Conheça nosso herói da trama!', ' Andrew Payne é o filho do Capitão do navio em se passa a história do livro. Com um passado complicado Andrew perdeu sua mãe ainda criança e passou a viver viajando com seu pai ao redor do mundo sem nunca se relacionar com ninguém de maneira íntima, nem com seu pai. \r\n\r\n Um jovem misterioso, frio e altruísta sempre está a disposição de todos por mais que na maioria das vezes não o percebam no meio da multidão. Andrew nunca teve a oportunidade de mostrar seu verdadeiro valor, sem poder ir a uma escola comum sempre estudou à distância e se manteve informado do mundo por meio da internet, então não possui ainda alguma profissão além de ser \"o filho do dono do navio\".\r\n\r\n Um rapaz bonito, de pele clara, olhos azuis vibrantes, cabelo liso e escuro, magro porém forte e ágil é atraente e magnético a quem o observa, e por ter um temperamento apático não é fácil de se aproximar, porém uma pessoa conseguiu chamar sua atenção, e a de muitos outros também, Melany Geisell.\r\n\r\n Sem esperar que fosse conseguir ao menos uma amizade com a garota, Andrew a segue pelo navio e a observa de longe, assim como era descrita a Lua no livro que ela sempre carregava consigo. O jovem é a personificação da lua e é insignificante para a maioria das pessoas, mas é reconhecido pela tangível Mel, como a chama carinhosamente.\r\n\r\n Sempre alegre e confortável com ela ao seu lado Andrew questiona se pode mesmo ser a solução para a história que sempre ouvia quando criança, e sente que tem responsabilidade de estar ao lado de Melany enquanto puder, ou pelo menos até que o destino os deixe ficar lado a lado.\r\n\r\n Obrigado por ler meu post.', '2023-02-11 15:13:56', 15),
+(5, 'O que significam o Sol e a Lua?', 'Anna', 'Entenda o significado por trás da escolha da autora.', ' Desde o início dos tempos os humanos acreditam na bipolaridade do equilíbrio como algo essencial para a vida, só pode haver luz se existem as trevas e por aí vai. Isso não é diferente com o Sol e a Lua, ambos coexistem sendo a Lua comumente designada como fria e sem luz, sendo assim mais próxima da escuridão, e o Sol sendo a própria luz que emana calor e trás os seres à vida. \r\n A ideia do livro é justamente trazer esses opostos, colocá-los juntos como dependentes um do outro e colocá-los a prova.', '2023-02-11 15:16:06', 23),
+(6, 'Olá, sou nova por aqui!', 'Evie', 'Acabei de entrar na comunidade, aceito algumas dicas de onde começar.', ' Olá, sou Evie e sou amante de livros de fantasia, e queria saber por onde começar a ler no blog. \r\n Obrigada desde já!', '2023-02-11 15:16:06', 11),
+(7, 'Boas vindas aos leitores!', 'Todos os personagens', 'Sejam bem vindos ao nosso mundo!', ' Olá jovens leitores, estamos super felizes que tenham escolhido participar de nossa história, somos gratos ao engajamento que nossa história está tendo e queremos agradecer por terem entrado em nossa comunidade, sejam bem vindos!', '2023-02-11 15:16:06', 10),
+(8, 'Regras da comunidade', 'Anna', 'Leiam com atenção as regras e aproveitem!', ' Olá, nossa comunidade é pequena, mas como todas as outras pela internet, ela depende de regras básicas para uma boa convivência virtual.\r\n 1: Educação e respeito, sempre é bom lembrar que é bom ser cordial com todos para não haver brigas, caso essa regra for quebrada o acesso dos envolvidos será removido, e sim é uma regra muito importante para nós.\r\n 2: Nada de compartilhar o livro ou infringir o copyright, o livro foi escrito com muito carinho e esforço, compartilhar de forma indevida faria tudo isso cair por terra, então não seja um babaca e compartilhe o blog para que mais pessoas possam conhecer o trabalho da autora!\r\n 3: Evite falar de sua vida pessoal, aqui é um ambiente de compartilhamento de informações e opiniões sobre o livro, não uma rede social comum, e evite deixar com que possam saber seus dados pessoais para não ter sua conta ou vida infringidas.\r\n Obrigada por lerem!', '2023-02-11 15:17:27', 1),
+(9, 'opijapsijxcadsodi8uefrbvtfg', 'aaaaaaaaaaaaaaaaaaaaaaa', 'owcvhwoivknwpviujvouofikejdokwncouwehdfwe', 'lllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll', '2023-02-11 15:17:27', 11),
+(10, 'oijhsodiahowdqw', 'kjkkkkkk', 'couewhfouweoqjnwdoqkwsd', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', '2023-02-11 15:17:57', 10);
 
 -- --------------------------------------------------------
 
@@ -68,10 +109,16 @@ CREATE TABLE `usuarios` (
   `email` varchar(100) DEFAULT NULL,
   `senha` varchar(12) DEFAULT NULL,
   `username` varchar(50) DEFAULT NULL,
-  `telefone` varchar(14) DEFAULT NULL,
-  `dtNascimento` varchar(8) DEFAULT NULL,
+  `dataNascimento` date DEFAULT NULL,
   `tipoUsuario` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `nome`, `email`, `senha`, `username`, `dataNascimento`, `tipoUsuario`) VALUES
+(1, 'autora', 'autora@gmail.com', 'autora', 'Autora', '2004-01-26', 'admin');
 
 --
 -- Indexes for dumped tables
@@ -81,13 +128,13 @@ CREATE TABLE `usuarios` (
 -- Indexes for table `categorias`
 --
 ALTER TABLE `categorias`
-  ADD PRIMARY KEY (`idCategory`,`tipo`);
+  ADD PRIMARY KEY (`idCategory`,`tag`);
 
 --
 -- Indexes for table `postagens`
 --
 ALTER TABLE `postagens`
-  ADD PRIMARY KEY (`idPosts`,`tipoPostagem`);
+  ADD PRIMARY KEY (`idPosts`,`idCategoria`);
 
 --
 -- Indexes for table `usuarios`
@@ -103,19 +150,19 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `idCategory` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `idCategory` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `postagens`
 --
 ALTER TABLE `postagens`
-  MODIFY `idPosts` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `idPosts` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
