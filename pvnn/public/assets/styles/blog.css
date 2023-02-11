@@ -1,0 +1,95 @@
+.titulo{
+  font-size: 20px;
+  font-family: 'Times New Roman', Times, serif;
+  font-style: italic;
+  
+}
+
+.subtitulo{
+  font-family: serif;
+  font-style: italic;
+
+}
+
+.titulo-subtitulo{
+  margin-left: 15px;
+  padding-left: 15px;
+}
+
+/* HOME */
+
+/* POSTAGENS */
+.blog-post {
+
+}
+
+.blog-post .data-autor, #post .data-autor {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 13px;
+  font-style: italic;
+  text-decoration: none;
+  color: #664997;
+
+}
+
+.blog-post .post-rodape {
+  background: #eee;
+}
+
+/* MENU LATERAL */
+.menu-lateral {
+  min-height: 400px;
+  padding-top: 25px;
+  background-color: #664997;
+}
+
+.menu-lateral .nav-item {
+  display: block;
+  width: 100%;
+}
+
+.menu-lateral .nav-item i {
+  display: inline;
+  margin-right: 15px;
+}
+.menu-lateral .nav-item a {
+  color: #fff;
+}
+
+/* .menu-lateral .nav-item:hover, .menu-lateral .nav-item:hover a {
+  background: #fff;
+  color: #664997;
+} */
+
+.sublist {
+  margin-top: -25px;
+}
+
+.sublist li {
+  list-style: none;
+  margin-left: 5px;
+  font-size: 12px;
+  line-height: 20px;
+  color: #eee;
+}
+
+.sublist li a {
+  text-decoration: none;
+}
+
+.btn-outline-primary {
+    color: #664997;
+    border-color: #664997;
+}
+
+.btn-round {
+  border-radius: 18px !important;
+}
+
+.btn-outline-primary:hover {
+    color: #fff;
+    background-color: #664997;
+    border-color: #664997;
+}
+
+
