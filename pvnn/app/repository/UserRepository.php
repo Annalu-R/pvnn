@@ -14,15 +14,14 @@
 
         public function create(UserModel $user) : int {
             try {
-                $query = "INSERT INTO usuarios (nome, telefone, email, senha, username, dtNascimento, tipoUsuario) VALUES (:nome, :fone, :email, :senha, :username, :dtNascimento, :tipoUser)";
+                $query = "INSERT INTO usuarios (nome, email, senha, username, dataNascimento, tipoUsuario) VALUES (:nome, :email, :senha, :username, :dataNascimento, :tipoUser)";
                 $prepare = $this->conn->prepare($query);
 
                 $prepare->bindValue(":nome", $user->getNome());
-                $prepare->bindValue(":fone", $user->getTelefone());
                 $prepare->bindValue(":email", $user->getEmail());
                 $prepare->bindValue(":senha", $user->getSenha());
                 $prepare->bindValue(":username", $user->getUsername());
-                $prepare->bindValue(":dtNascimento", $user->getDtNasc());
+                $prepare->bindValue(":dataNascimento", $user->getDataNascimento());
                 $prepare->bindValue(":tipoUser", $user->getTipoUser());
                 $prepare->execute();
                 
@@ -55,16 +54,15 @@
         }
 
         public function update(UserModel $user) : bool {
-            $query = "UPDATE usuarios SET nome = ?, telefone = ?, email = ?, senha = ?, username = ?, dtNascimento = ?, tipoUser = ? WHERE id = ?";
+            $query = "UPDATE usuarios SET nome = ?, email = ?, senha = ?, username = ?, dataNascimento = ?, tipoUser = ? WHERE id = ?";
             $prepare = $this->conn->prepare($query);
             $prepare->bindValue(1, $user->getNome());
-            $prepare->bindValue(2, $user->getTelefone());
-            $prepare->bindValue(3, $user->getEmail());
-            $prepare->bindValue(4, $user->getSenha());
-            $prepare->bindValue(5, $user->getUsername());
-            $prepare->bindValue(6, $user->getDtNasc());
-            $prepare->bindValue(7, $user->getTipoUser());
-            $prepare->bindValue(8, $user->getId());
+            $prepare->bindValue(2, $user->getEmail());
+            $prepare->bindValue(3, $user->getSenha());
+            $prepare->bindValue(4, $user->getUsername());
+            $prepare->bindValue(5, $user->getDataNascimento());
+            $prepare->bindValue(6, $user->getTipoUser());
+            $prepare->bindValue(7, $user->getId());
             $result = $prepare->execute();
             //$result = $prepare->rowCount();
             //var_dump($result);

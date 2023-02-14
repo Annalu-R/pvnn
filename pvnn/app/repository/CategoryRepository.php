@@ -14,10 +14,9 @@
 
         public function create(CategoryModel $category) : int {
             try {
-                $query = "INSERT INTO categorias (tipo, tag) VALUES (:tipo, :tag)";
+                $query = "INSERT INTO categorias (tag) VALUES (:tag)";
                 $prepare = $this->conn->prepare($query);
 
-                $prepare->bindValue(":tipo", $category->getTipo());
                 $prepare->bindValue(":tag", $category->getTag());
                 $prepare->execute();
                 
@@ -50,11 +49,10 @@
         }
 
         public function update(CategoryModel $category) : bool {
-            $query = "UPDATE categorias SET tipo = ?, tag = ? WHERE idCategory = ?";
+            $query = "UPDATE categorias SET tag = ? WHERE idCategory = ?";
             $prepare = $this->conn->prepare($query);
-            $prepare->bindValue(1, $category->getTipo());
-            $prepare->bindValue(2, $category->getTag());
-            $prepare->bindValue(3, $category->getidCategory());
+            $prepare->bindValue(1, $category->getTag());
+            $prepare->bindValue(2, $category->getidCategory());
             $result = $prepare->execute();
             //$result = $prepare->rowCount();
             //var_dump($result);
