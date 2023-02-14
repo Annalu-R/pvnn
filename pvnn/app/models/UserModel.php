@@ -3,11 +3,10 @@ class UserModel {
 	
 	private $id;
 	private $username;
-	private $telefone;
 	private $email;
 	private $senha;
 	private $nome;
-	private $dtNascimento;
+	private $dataNascimento;
 	private $tipoUser;
 	
 	public function getId(): int{
@@ -24,14 +23,6 @@ class UserModel {
 	
 	public function setUsername(string $un){
 		$this->username = $un;
-	}
-
-	public function getTelefone(): string{
-		return $this->telefone;
-	}
-	
-	public function setTelefone(string $tel){
-		$this->telefone = $tel;
 	}
 
 	public function getEmail(): string{
@@ -55,18 +46,18 @@ class UserModel {
 	public function setNome(string $n){
 		$this->nome = $n;
 	}
-	public function getDtNasc(): string{
-		return $this->data;
+	public function getDataNascimento(): string{
+		return $this->dataNascimento;
 	}
 	
-	public function setDtNasc(string $dt){
-		$this->data = $dt;
+	public function setDataNascimento(string $dataNascimento){
+		$this->dataNascimento = $dataNascimento;
 	}
 	public function getTipoUser(): string{
-		return $this->tipo;
+		return $this->tipoUser;
 	}
 	
-	public function setTipoUser(string $tp){
-		$this->tipo = $tp;
+	public function setTipoUser(string $tipoUser){
+		$this->tipoUser = $tipoUser;
 	}
 }
