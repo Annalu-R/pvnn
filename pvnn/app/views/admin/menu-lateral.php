@@ -6,24 +6,14 @@
             <a href="<?= $data['base_path']?>/app/controllers/AdminController.php?action=page_posts_cadastrar" class="nav-link">Cadastrar</a>
         </nav>
         
-        <label>UI Elements</label>
+        <label>Categorias</label>
         <nav class="nav flex-column">
-            <a href="elem-buttons.html" class="nav-link">Buttons</a>
-            <a href="elem-dropdown.html" class="nav-link">Dropdown</a>
-            <a href="elem-icons.html" class="nav-link">Icons</a>
+        <a href="<?= $data['base_path']?>/app/controllers/AdminController.php?action=page_categorias_listar" class="nav-link">Listar</a>
+            <a href="<?= $data['base_path']?>/app/controllers/AdminController.php?action=page_categorias_cadastrar" class="nav-link">Cadastrar</a>
         </nav>
-        <label>Forms</label>
+        <label>Usuários</label>
         <nav class="nav flex-column">
-            <a href="form-elements.html" class="nav-link">Form Elements</a>
-        </nav>
-        <label>Charts</label>
-        <nav class="nav flex-column">
-            <a href="chart-chartjs.html" class="nav-link">ChartJS</a>
-        </nav>
-
-        <label>Tables</label>
-        <nav class="nav flex-column">
-            <a href="table-basic.html" class="nav-link active">Basic Tables</a>
+        <a href="<?= $data['base_path']?>/app/controllers/AdminController.php?action=page_usuarios_listar" class="nav-link">Listar</a>
         </nav>
     </div><!-- component-item -->
 
