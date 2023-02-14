@@ -6,7 +6,7 @@ class PostsModel {
 	private $titulo;
 	private $texto;
 	private $resumo;
-	private $tipoPostagem;
+	private $tag;
 	private $data;
 
 	
@@ -22,8 +22,8 @@ class PostsModel {
 		return $this->autor;
 	}
 	
-	public function setAutor(string $au){
-		$this->autor = $au;
+	public function setAutor(string $autor){
+		$this->autor = $autor;
 	}
 
 	public function getTitulo(): string{
@@ -38,8 +38,8 @@ class PostsModel {
 		return $this->texto;
 	}
 	
-	public function setTexto(string $text){
-		$this-> texto = $text;
+	public function setTexto(string $texto){
+		$this-> texto = $texto;
 	}
 
 	public function getResumo(): string{
@@ -50,12 +50,12 @@ class PostsModel {
 		$this-> resumo = $resumo;
 	}
 
-	public function getTipoPostagem(): string{
-		return $this->tipoPostagem;
+	public function getTag(): string{
+		return $this->tag;
 	}
 	
-	public function setTipoPostagem(string $tipoPostagem){
-		$this->tipoPostagem = $tipoPostagem;
+	public function setTag(string $tag){
+		$this->tag = $tag;
 	}
 	
 	public function getData(): string{

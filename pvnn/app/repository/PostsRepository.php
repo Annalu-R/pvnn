@@ -14,26 +14,26 @@
 
         public function create(PostsModel $posts) : int {
             try {
-                $query = "INSERT INTO postagens (idPosts, autor, titulo, texto, resumo, tipoPostagem, data) VALUES (:idPosts, :autor, :titulo, :texto, :resumo, :tipoPostagem, :data)";
+                $query = "INSERT INTO postagens (autor, titulo, texto, resumo, data, idCategoria) VALUES (:autor, :titulo, :texto, :resumo, :data, :idCategoria)";
                 $prepare = $this->conn->prepare($query);
 
                 $prepare->bindValue(":autor", $posts->getAutor());
                 $prepare->bindValue(":titulo", $posts->getTitulo());
                 $prepare->bindValue(":texto", $posts->getTexto());
                 $prepare->bindValue(":resumo", $posts->getResumo());
-                $prepare->bindValue(":tipoPostagem", $posts->getTipoPostagem());
                 $prepare->bindValue(":data", $posts->getData());
+                $prepare->bindValue(":idCategoria", 1);
                 $prepare->execute();
                 
                 return $this->conn->lastInsertId();
                 
             } catch(Exception $e) {
-                    print("Erro ao inserir postagem no banco de dados");
+                    print("Erro ao inserir postagem no banco de dados: " . $e->getMessage());
             }
         }
 
         public function findAll(): array {
-            $table = $this->conn->query("SELECT * FROM postagens");
+            $table = $this->conn->query("SELECT * FROM postagens JOIN categorias on postagens.idCategoria = categorias.idCategory");
             $posts  = $table->fetchAll(PDO::FETCH_ASSOC);
 
             return $posts;
@@ -77,7 +77,7 @@
         }
 
         public function findPostById(int $id) {
-            $query = "SELECT * FROM postagens WHERE idPosts = ?";
+            $query = "SELECT * FROM postagens JOIN categorias on postagens.idCategoria = categorias.idCategory WHERE idPosts = ?";
             $prepare = $this->conn->prepare($query);
             $prepare->bindParam(1, $id, PDO::PARAM_INT);
 
@@ -90,13 +90,13 @@
         }
 
         public function update(PostsModel $posts) : bool {
-            $query = "UPDATE postagens SET autor = ?, titulo = ?, texto = ?, resumo = ?, tipoPostagem = ?, data = ? WHERE idPost = ?";
+            $query = "UPDATE postagens SET autor = ?, titulo = ?, texto = ?, resumo = ?, idCategoria = ?, data = ? WHERE idPosts = ?";
             $prepare = $this->conn->prepare($query);
             $prepare->bindValue(1, $posts->getAutor());
             $prepare->bindValue(2, $posts->getTitulo());
             $prepare->bindValue(3, $posts->getTexto());
             $prepare->bindValue(4, $posts->getResumo());
-            $prepare->bindValue(5, $posts->getTipoPostagem());
+            $prepare->bindValue(5, 1);
             $prepare->bindValue(6, $posts->getData());
             $prepare->bindValue(7, $posts->getIdPosts());
             $result = $prepare->execute();

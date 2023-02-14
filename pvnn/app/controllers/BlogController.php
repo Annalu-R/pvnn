@@ -7,12 +7,8 @@ error_reporting(E_ALL);
 require_once __DIR__ . "/../repository/PostsRepository.php";
 require_once __DIR__ . "/../repository/CategoryRepository.php";
 
-
-$post = new BlogController();
-
 class BlogController {
 
-    private $postController;
     private $base_path;
 
 	function __construct(){
@@ -127,7 +123,6 @@ class BlogController {
 
         $postsRepository = new PostsRepository();
 
-
         //informações gerais
         $data['titulo'] = "BLOG DA ANNA";
         $data['base_path'] = $this->base_path;
@@ -151,7 +146,7 @@ class BlogController {
         $data['titulo'] = "BLOG DA ANNA";
         $data['base_path'] = $this->base_path;
         $data['posts'] = $postsRepository->findPostsByCategory($category);
-
+        
         //carregar categorias
         $categoryRepository = new CategoryRepository();
         $categories = $categoryRepository->findAll();
@@ -185,3 +180,5 @@ class BlogController {
         return $phrase;
       }
 }
+
+$post = new BlogController();

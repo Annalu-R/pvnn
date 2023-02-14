@@ -110,7 +110,8 @@ class PostsController{
         print "</pre>";
     }
 
-    private function deleteById(){
+    private function deleteById() {
+
         $idParam = $_GET['idPosts'];
         $postsRepository = new PostsRepository();    
 
@@ -140,7 +141,7 @@ class PostsController{
         $posts->setTitulo($_POST["titulo"]);
 		$posts->setTexto($_POST["texto"]);
 		$posts->setResumo($_POST["resumo"]);
-        $posts->setTipoPostagem($_POST["tipoPostagem"]);
+        $posts->setTag($_POST["categoria"]);
         $posts->setData($_POST["data"]);
 
         $postsRepository = new PostsRepository();
