@@ -61,7 +61,6 @@ class CategoryController{
         // $cat->setEmail("asd@asd");
 //print_r ($_POST["nome"]);
 
-        $category->setTipo($_POST["tipo"]);
 		$category->setTag($_POST["tag"]);
 
         $categoryRepository = new CategoryRepository();
@@ -130,7 +129,6 @@ class CategoryController{
 
 		$category->setIdCategory($_GET["idCategory"]);
 		$category->setTag($_POST["tag"]);
-		$category->setTipo($_POST["tipo"]);
 
         $categoryRepository = new CategoryRepository();
         //print_r($cat);

@@ -63,7 +63,7 @@ class PostsController{
         $posts->setTitulo($_POST["titulo"]);
 		$posts->setTexto($_POST["texto"]);
         $posts->setResumo($_POST["resumo"]);
-        $posts->setTipoPostagem($_POST["tipoPostagem"]);
+        $posts->setTag($_POST["idCategoria"]);
         $posts->setData($_POST["data"]);
    
 
@@ -92,7 +92,7 @@ class PostsController{
 
         $data['titulo']    = "listar posts";
         $data['posts']     = $posts;
-        $data['base_path'] = "http://localhost:8080/pvnn/app/views/assets/admin";
+        $data['base_path'] = "http://localhost/pvnn/app/views/assets/admin";
 
         $this->loadView("/posts.php", $data);
 
@@ -110,7 +110,7 @@ class PostsController{
         print "</pre>";
     }
 
-    private function deleteById() {
+    private function deleteById(){
 
         $idParam = $_GET['idPosts'];
         $postsRepository = new PostsRepository();    
@@ -141,7 +141,7 @@ class PostsController{
         $posts->setTitulo($_POST["titulo"]);
 		$posts->setTexto($_POST["texto"]);
 		$posts->setResumo($_POST["resumo"]);
-        $posts->setTag($_POST["categoria"]);
+        $posts->setTag($_POST["idCategoria"]);
         $posts->setData($_POST["data"]);
 
         $postsRepository = new PostsRepository();

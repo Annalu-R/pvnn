@@ -14,7 +14,7 @@ class BlogController {
 	function __construct(){
 
         // ALTERAR PARA O CAMINHO DO SEU COMPUTADOR
-        $this->base_path = "http://localhost:8080/pvnn";
+        $this->base_path = "http://localhost/pvnn";
 		
         if(isset($_POST["action"])){
 			$action = $_POST["action"];
@@ -115,7 +115,7 @@ class BlogController {
         $categories = $categoryRepository->findAll();
         $data['categories'] = $categories;
 
-        $this->loadView("blog/post.php", $data, null);
+        $this->loadView("blog/page_post.php", $data, null);
     }
 
 
@@ -133,7 +133,7 @@ class BlogController {
         $categories = $categoryRepository->findAll();
         $data['categories'] = $categories;
          
-        $this->loadView("blog/posts.php", $data, null);
+        $this->loadView("blog/page_posts.php", $data, null);
     }
 
     public function page_posts_category(){
@@ -152,7 +152,7 @@ class BlogController {
         $categories = $categoryRepository->findAll();
         $data['categories'] = $categories;
          
-        $this->loadView("blog/posts.php", $data, null);
+        $this->loadView("blog/page_posts.php", $data, null);
     }
 
     public function page_autora(){
@@ -166,7 +166,7 @@ class BlogController {
         $categories = $categoryRepository->findAll();
         $data['categories'] = $categories;
 
-        $this->loadView("blog/autora.php", $data, null);
+        $this->loadView("blog/page_autora.php", $data, null);
     }
 
     private function preventDefault() {

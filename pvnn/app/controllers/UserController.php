@@ -61,11 +61,10 @@ class UserController{
         // $user->setEmail("asd@asd");
 //print_r ($_POST["nome"]);
 		$user->setNome($_POST["nome"]);
-		$user->setTelefone($_POST["telefone"]);
 		$user->setEmail($_POST["email"]);
         $user->setSenha($_POST["senha"]);
         $user->setUsername($_POST["username"]);
-        $user->setDtNasc($_POST["dtNascimento"]);
+        $user->setDataNascimento($_POST["dataNascimento"]);
         $user->setTipoUser($_POST["tipoUser"]);
 
         $userRepository = new UserRepository();
@@ -134,11 +133,10 @@ class UserController{
 
 		$user->setId($_GET["id"]);
 		$user->setNome($_POST["nome"]);
-		$user->setTelefone($_POST["telefone"]);
 		$user->setEmail($_POST["email"]);
         $user->setSenha($_POST["senha"]);
         $user->setUsername($_POST["userame"]);
-        $user->setDtNasc($_POST["dtNascimento"]);
+        $user->setDataNascimento($_POST["dataNascimento"]);
         $user->setTipoUser($_POST["tipoUser"]);
 
         $userRepository = new UserRepository();
