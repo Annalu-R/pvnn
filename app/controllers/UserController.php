@@ -10,7 +10,13 @@ $cUsuario = new UserController();
 
 class UserController{
 
+    private $base_path;
+
 	function __construct(){
+
+
+        // ALTERAR PARA O CAMINHO DO SEU COMPUTADOR
+        $this->base_path = "http://localhost:8080/pvnn";
 		
         if(isset($_POST["action"])){
 			$action = $_POST["action"];
@@ -56,16 +62,15 @@ class UserController{
     private function create(){
         
         $user = new UserModel();
-        // $user->setNome("aaa");
-        // $user->setTelefone("123213");
-        // $user->setEmail("asd@asd");
-//print_r ($_POST["nome"]);
-		$user->setNome($_POST["nome"]);
-		$user->setEmail($_POST["email"]);
-        $user->setSenha($_POST["senha"]);
-        $user->setUsername($_POST["username"]);
-        $user->setDataNascimento($_POST["dataNascimento"]);
-        $user->setTipoUser($_POST["tipoUser"]);
+
+		$user->setNome($_POST["campo_nome"]);
+        $user->setUsername($_POST["campo_username"]);
+		$user->setEmail($_POST["campo_email"]);
+        $user->setSenha($_POST["campo_senha"]);
+        
+        //$user->setDataNascimento($_POST["dataNascimento"]);
+        $user->setDataNascimento(date("Y/m/d"));
+        $user->setTipoUser("comum");
 
         $userRepository = new UserRepository();
         $id = $userRepository->create($user);
@@ -76,7 +81,7 @@ class UserController{
 			$msg = "Erro ao inserir o registro no banco de dados.";
 		}
 
-        $this->findAll($msg);
+        header("location: ". $this->base_path. "/app/controllers/LoginController.php?action=page_login");
     }
 
     private function loadFormNew(){
