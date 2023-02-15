@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -8,7 +10,7 @@ require_once __DIR__ . "/../repository/PostsRepository.php";
 require_once __DIR__ . "/../repository/CategoryRepository.php";
 require_once __DIR__ . "/../repository/UserRepository.php";
 
-class BlogController {
+class AdminController {
 
     private $base_path;
     private $postRepository;
@@ -17,6 +19,10 @@ class BlogController {
 
 	function __construct(){
 
+
+
+        
+
         $this->postRepository = new PostsRepository();
         $this->categoryRepository = new CategoryRepository();
         $this->userRepository = new UserRepository();
@@ -24,6 +30,11 @@ class BlogController {
         // ALTERAR PARA O CAMINHO DO SEU COMPUTADOR
         $this->base_path = "http://localhost:8080/pvnn";
 		
+        if(!isset($_SESSION['esta_logado']) || $_SESSION['esta_logado'] == false){
+            header("location: ". $this->base_path . "/app/controllers/LoginController.php?action=page_login");
+            return;
+        }
+
         if(isset($_POST["action"])){
 			$action = $_POST["action"];
 		}else if(isset($_GET["action"])){
@@ -33,7 +44,7 @@ class BlogController {
 		if(isset($action)){
 			$this->callAction($action);
 		} else {
-			$this->page_home();
+			$this->page_posts_listar();
 		}
 	}
 
@@ -59,10 +70,6 @@ class BlogController {
         } else {
             print "Erro ao carregar a view";
         }
-    }
-
-    private function page_login(){
-        $this->loadView("admin/page-usuarios-login.php", null, null);
     }
 
     private function page_usuarios_cadastro(){
@@ -160,6 +167,23 @@ class BlogController {
     
     }
 
+    private function posts_excluir(){
+
+        $idParam = $_GET['id'];
+
+        $postsRepository = new PostsRepository();    
+
+        $qt = $postsRepository->deleteByIdPost($idParam);
+        
+        if($qt){
+			$msg = "Registro excluído com sucesso.";
+		}else{
+			$msg = "Erro ao excluir o registro no banco de dados.";
+		}
+        
+        $this->page_posts_listar();
+    }
+
     private function page_categorias_listar(){
 
         $category = $this->categoryRepository->findAll();
@@ -231,6 +255,37 @@ class BlogController {
     
     }
 
+    private function categorias_excluir(){
+
+        $idParam = $_GET['id'];
+
+        $categoryRepository = new CategoryRepository();    
+
+        $qt = $categoryRepository->deleteCategoryById($idParam);
+        
+        if($qt){
+			$msg = "Registro excluído com sucesso.";
+		}else{
+			$msg = "Erro ao excluir o registro no banco de dados.";
+		}
+        
+        $this->page_categorias_listar();
+    }
+
+    private function usuarios_excluir(){
+        
+        $idParam = $_GET['id'];
+        $userRepository = new UserRepository();    
+
+        $qt = $userRepository->deleteById($idParam);
+        if($qt){
+			$msg = "Registro excluído com sucesso.";
+		}else{
+			$msg = "Erro ao excluir o registro no banco de dados.";
+		}
+        $this->page_usuarios_listar();
+    }
+
     private function preventDefault() {
         print "Ação indefinida...";
     }
@@ -243,4 +298,4 @@ class BlogController {
       }
 }
 
-$post = new BlogController();
+$admin = new AdminController();
