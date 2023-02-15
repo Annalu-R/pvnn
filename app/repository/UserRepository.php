@@ -78,4 +78,18 @@
             //var_dump($result);
             return $result;
         }
+
+        public function userLogin($usuario) {
+            
+            $query = "SELECT * FROM usuarios WHERE email = ? AND senha = ?";
+            $prepare = $this->conn->prepare($query);
+            $prepare->bindValue(1, $usuario->getEmail());
+            $prepare->bindValue(2, $usuario->getSenha());
+            $prepare->execute();
+
+            return $prepare->fetch(PDO::FETCH_ASSOC);
+
+        }
+
+
     }
