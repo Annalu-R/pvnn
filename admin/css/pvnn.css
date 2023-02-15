@@ -1,0 +1,14 @@
+.az-content-left {
+    background: #fcfcfc;
+}
+
+.table tr {
+    padding: 10px;
+    height: 50px;
+    line-height: 50px;
+}
+
+.table thead th,
+.table thead td {
+    border-bottom-width: 2px;
+}
