@@ -27,7 +27,7 @@
           <td><?= $category['tag']?></td>
           <td>
             <a href="<?= $data['base_path']?>/app/controllers/AdminController.php?action=page_categorias_editar&id=<?= $category['idCategory']; ?>">editar</a> 
-            <a href="#" onclick="return confirm('Deseja excluir?');">excluir</a>
+            <a href="<?= $data['base_path']?>/app/controllers/AdminController.php?action=categorias_excluir&id=<?= $category['idCategory']; ?>" onclick="return confirm('Deseja excluir?');">excluir</a>
           </td>
         </tr>
       <?php endforeach; ?>

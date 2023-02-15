@@ -1,3 +1,5 @@
+<?php $user = $_SESSION["usuario"]; ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -19,6 +21,20 @@
     <link rel="stylesheet" href="<?= $data['base_path'] ?>/public/admin/css/azia.css">
     <link rel="stylesheet" href="<?= $data['base_path'] ?>/public/admin/css/pvnn.css">
 
+    <style>
+      
+      .az-img-user {
+        font-family: 'Poppins', sans-serif;
+        background: #3366ff;
+        text-align: center;
+        line-height: 32px;
+        font-weight: 700;
+        color: #fff;
+        text-transform: uppercase;
+      }
+
+    </style>
+
   </head>
   <body>
 
@@ -36,24 +52,28 @@
 
           
           <div class="dropdown az-profile-menu">
-            <a href="" class="az-img-user"><img src="<?= $data['base_path'] ?>/public/admin/img/faces/face1.jpg" alt=""></a>
+            <a href="" class="az-img-user"><?= substr($user['nome'], 0, 1) ?></a>
             <div class="dropdown-menu">
               <div class="az-dropdown-header d-sm-none">
                 <a href="" class="az-header-arrow"><i class="icon ion-md-arrow-back"></i></a>
               </div>
               <div class="az-header-profile">
-                <div class="az-img-user">
-                  <img src="<?= $data['base_path'] ?>/public/admin/img/faces/face1.jpg" alt="">
+                <div class="az-img-user" style="font-size: 55px; line-height: 80px;">
+                <?= substr($user['nome'], 0, 1) ?>
+
                 </div><!-- az-img-user -->
-                <h6>Aziana Pechon</h6>
-                <span>Premium Member</span>
+                <h6><?= $user['nome'] ?></h6>
+                <span><?= $user['email'] ?></span>
+
               </div><!-- az-header-profile -->
 
-              <a href="" class="dropdown-item"><i class="typcn typcn-user-outline"></i> My Profile</a>
-              <a href="" class="dropdown-item"><i class="typcn typcn-edit"></i> Edit Profile</a>
-              <a href="" class="dropdown-item"><i class="typcn typcn-time"></i> Activity Logs</a>
-              <a href="" class="dropdown-item"><i class="typcn typcn-cog-outline"></i> Account Settings</a>
-              <a href="page-signin.html" class="dropdown-item"><i class="typcn typcn-power-outline"></i> Sign Out</a>
+              <a href="" class="dropdown-item"><i class="typcn typcn-edit"></i> editar conta</a>
+
+              <a href="<?= $data['base_path'] ?>/app/controllers/LoginController.php?action=logout" class="dropdown-item">
+                <i class="typcn typcn-power-outline"></i> 
+                sair
+              </a>
+
             </div><!-- dropdown-menu -->
           </div>
         </div><!-- az-header-right -->
@@ -63,4 +83,4 @@
     <div class="az-content p-0">
       <div class="container-fluid p-0 pr-4">
         
-      <?php require_once __DIR__ . "/menu-lateral.php"; ?>
+      <?php require_once __DIR__ . "/menu-lateral.php"; ?>      

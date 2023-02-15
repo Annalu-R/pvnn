@@ -35,7 +35,7 @@
           <td><?= $user['tipoUsuario']?></td>
           <td>
             <a href="<?= $data['base_path']?>/app/controllers/AdminController.php?action=page_usuarios_editar&id=<?= $user['id']; ?>">editar</a> 
-            <a href="#" onclick="return confirm('Deseja excluir?');">excluir</a>
+            <a href="<?= $data['base_path']?>/app/controllers/AdminController.php?action=usuarios_excluir&id=<?= $user['id']; ?>" onclick="return confirm('Deseja excluir?');">excluir</a>
           </td>
         </tr>
       <?php endforeach; ?>

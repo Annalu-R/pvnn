@@ -33,7 +33,9 @@
           <td><?= $post['tag']?></td>
           <td>
             <a href="<?= $data['base_path']?>/app/controllers/AdminController.php?action=page_posts_editar&id=<?= $post['idPosts']; ?>">editar</a> 
-            <a href="#" onclick="return confirm('Deseja excluir?');">excluir</a>
+            
+            <a href="<?= $data['base_path']?>/app/controllers/AdminController.php?action=posts_excluir&id=<?= $post['idPosts']; ?>" onclick="return confirm('Deseja excluir?');">excluir</a>
+          
           </td>
         </tr>
       <?php endforeach; ?>
